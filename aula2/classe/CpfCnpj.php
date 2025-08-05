@@ -14,6 +14,14 @@ class CpfCnpj
     {
         $valorNovo = preg_replace('/[^0-9]/', '', $cpfNaoConfiavel);
 
+        $length = strlen($valorNovo);
+
+        if ($length < 11 && $length > 0) {
+            $valorNovo = str_pad($valorNovo,11,'0', STR_PAD_LEFT);
+        }elseif ($length > 11&& $length > 0) {
+            $valorNovo = str_pad($valorNovo,14, '0', STR_PAD_LEFT);
+        }
+
         return new self($valorNovo);
     }
 
